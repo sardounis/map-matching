@@ -1,5 +1,5 @@
 graphhopper:
-  datareader.file: map-data/leipzig_germany.osm.pbf # OSM input file (example data)
+  datareader.file: map-data/greece-latest.osm.pbf # map-data/leipzig_germany.osm.pbf # OSM input file (example data)
   graph.location: graph-cache
   graph.flag_encoders: car
   profiles:
@@ -12,8 +12,8 @@ server:
   - type: http
     port: 8989
     # for security reasons bind to localhost
-    bind_host: localhost
+#    bind_host: localhost
   admin_connectors:
   - type: http
     port: 8990
-    bind_host: localhost
+#    bind_host: localhost
