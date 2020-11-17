@@ -116,22 +116,6 @@ public class MapMatchingResource {
 
         List<Observation> measurements = gpx.trk.get(0).getEntries();
         MatchResult matchResult = matching.match(measurements);
-        ///////
-//        logger.info("measurements:");
-//        logger.info(String.valueOf(measurements));
-//
-//        logger.info("matchResult:");
-//        logger.info(String.valueOf(matchResult));
-//
-//        logger.info("getMatchMillis()");
-//        logger.info(String.valueOf(matchResult.getMatchMillis()));
-//
-//        logger.info("writeGPX:");
-//        logger.info(String.valueOf(writeGPX));
-//
-//        logger.info("instructions:");
-//        logger.info(String.valueOf(instructions));
-        //////
 
         // TODO: Request logging and timing should perhaps be done somewhere outside
         float took = sw.stop().getSeconds();
@@ -141,12 +125,12 @@ public class MapMatchingResource {
         logger.info(logStr);
 
         if ("extended_json".equals(outType)) {
-            logger.info("extended_json:");
+
             return Response.ok(convertToTree(matchResult, enableElevation, pointsEncoded)).
                     header("X-GH-Took", "" + Math.round(took * 1000)).
                     build();
         } else {
-            logger.info("else extended_json:");
+
             Translation tr = trMap.getWithFallBack(Helper.getLocale(localeStr));
             DouglasPeucker peucker = new DouglasPeucker().setMaxDistance(minPathPrecision);
             PathMerger pathMerger = new PathMerger(matchResult.getGraph(), matchResult.getWeighting()).
